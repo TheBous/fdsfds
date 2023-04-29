@@ -15,12 +15,13 @@ def rr():
     # ecg model = [-200, -100, -56, 3, 200, ...]
     my_ecg = data['ecg']
     rr_peaks = detectors.engzee_detector(my_ecg)
-    int_array = [int(item) for item in rr_peaks]
+    int_rr_array = [int(item) for item in rr_peaks]
 
     out = ecg.ecg(signal=my_ecg, sampling_rate=125, show=False)
     bpm = out["heart_rate"]
+    int_bpm_array = [int(item) for item in bpm]
 
-    return jsonify({'rr': int_array, 'bpm': bpm})
+    return jsonify({'rr': int_rr_array, 'bpm': int_bpm_array})
 
 
 if __name__ == '__main__':
